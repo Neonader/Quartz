@@ -1,0 +1,3 @@
+fun main() {
+    // still no main...
+}

@@ -102,6 +102,8 @@ ConstructorBody
 ## Compiler tricks
 This is a list of extra syntactic features not included in the formal syntax of Quartz:
 * empty lines are always ignored
+* lines with `@` as the first non-whitespace are always ignored
+* code on a line is ignored starting from the first unescaped at sign `@`
 * the backslash `\` is ignored unless used as an escape character
     * `\b` escapes Backspace (U+0008)
     * `\t` escapes Tab (U+0009)
@@ -111,7 +113,6 @@ This is a list of extra syntactic features not included in the formal syntax of 
     * `\'` escapes `'''` (U+0027)
     * `\@` escapes `'@'` (U+0040)
     * `\\` escapes `'\'` (U+005C)
-* text will be ignored starting from the first unescaped at sign `@`
 
 ## Examples
 This is a selection of example code to clarify the syntax of Quartz.
