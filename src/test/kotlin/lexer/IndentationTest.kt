@@ -1,6 +1,7 @@
 package lexer
 
 import org.junit.jupiter.api.Nested
+import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -25,7 +26,17 @@ class IndentationTest {
             val result = filterCodeLines(input)
             assertEquals(expected, result)
         }
-        // TODO: More cases
+        /**
+         * [filterCodeLines] returns the correct filtered list
+         */
+        @Test
+        fun testMixedCodeLines() {
+            val input = listOf("Hello,", "  ", "  @ amazing", " world!")
+            val expected = listOf("Hello,", " world!")
+
+            val result = filterCodeLines(input)
+            assertEquals(expected, result)
+        }
     }
 
     /**
@@ -49,14 +60,11 @@ class IndentationTest {
          */
         @Test
         fun testMixedIndentation() {
-            // TODO
-        }
-        /**
-         * [measureLeadingWhitespaces] returns the correct mixed **indentations**, more complex
-         */
-        @Test
-        fun testComplexIndentation() {
-            // TODO
+            val input = listOf("code", "    code", "code", "  code", "      code", "  code")
+            val expected = listOf(0, 4, 0, 2, 6, 2)
+
+            val result = measureLeadingWhitespaces(input)
+            assertEquals(expected, result)
         }
     }
 
@@ -81,7 +89,7 @@ class IndentationTest {
          */
         @Test
         fun testSameIndentLevels() {
-            val input = listOf(2, 2, 2, 2)
+            val input = listOf(1, 1, 1, 1)
             val expected = listOf(0, 0, 0, 0)
 
             val result = calculateIndentLevels(input)
@@ -92,7 +100,7 @@ class IndentationTest {
          */
         @Test
         fun testMixedIndentLevels() {
-            val input = listOf(2, 4, 4, 6, 4, 2)
+            val input = listOf(0, 3, 3, 6, 3, 0)
             val expected = listOf(0, 1, 1, 2, 1, 0)
 
             val result = calculateIndentLevels(input)
@@ -124,6 +132,11 @@ class IndentationTest {
      */
     @Test
     fun testIndentationAlgorithm() {
-        // TODO
+        val input = File("src/test/resources/indentation/mixed_example.qz").readLines()
+        val expected = listOf(0, 1, 0, 1, 2, 3, 2, 0, 1, 2, 2, 0, 1)
+
+        // yep
+        val result = calculateIndentLevels(measureLeadingWhitespaces(filterCodeLines(input)))
+        assertEquals(expected, result)
     }
 }

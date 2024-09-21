@@ -12,7 +12,6 @@ The documentation is divided into the following sections:
 
 TODO
 * Make a TODO file
-* Finish Indentation tests
 * Refactor Workings.md into kdoc comments
 * Finish syntax spec
 * Usage specification
