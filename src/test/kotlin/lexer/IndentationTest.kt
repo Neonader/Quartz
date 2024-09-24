@@ -128,15 +128,14 @@ class IndentationTest {
         }
     }
     /**
-     * The following test checks if all 3 parts work together correctly
+     * The following test checks if all 3 parts work together correctly in [applyIndentationAlgorithm]
      */
     @Test
     fun testIndentationAlgorithm() {
-        val input = File("src/test/resources/indentation/mixed_example.qz").readLines()
+        val input = File("src/test/resources/indentation/mixed_example.qz").readLines() // example "code"
         val expected = listOf(0, 1, 0, 1, 2, 3, 2, 0, 1, 2, 2, 0, 1)
 
-        // yep
-        val result = calculateIndentLevels(measureLeadingWhitespaces(filterCodeLines(input)))
+        val result = applyIndentationAlgorithm(input)
         assertEquals(expected, result)
     }
 }

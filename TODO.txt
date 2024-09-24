@@ -1,0 +1,6 @@
+TODO Syntax specification
+TODO Usage specification
+TODO Error specification
+TODO Version system
+TODO The rest of the compiler
+TODO IntelliJ IDEA plugin
